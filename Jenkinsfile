@@ -10,7 +10,7 @@ pipeline {
                         //There is a drawback though, if it is the first time you are running this job, this variable is not available and fails the build
                         //For the first time i had to use ${env.GIT_COMMIT} itself at both places to pass the build. A hack but worth it for future builds.
 
-                        def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_COMMIT} | grep servicelayer | wc -l").trim()
+                        def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep servicelayer | wc -l").trim()
                         if(strCount=="0") {
                             echo "Skipping project1 build no files updated"
                             CONTINUE_BUILD = false
@@ -25,7 +25,7 @@ pipeline {
                         //There is a drawback though, if it is the first time you are running this job, this variable is not available and fails the build
                         //For the first time i had to use ${env.GIT_COMMIT} itself at both places to pass the build. A hack but worth it for future builds.
 
-                        def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${env.GIT_COMMIT} | grep servicelayer | wc -l").trim()
+                        def strCount = sh(returnStdout: true, script: "git diff --name-only ${env.GIT_COMMIT} ${GIT_PREVIOUS_SUCCESSFUL_COMMIT} | grep servicelayer | wc -l").trim()
                         if(strCount=="0") {
                             echo "Skipping project2 build no files updated"
                             CONTINUE_BUILD = false
