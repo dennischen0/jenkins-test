@@ -3,7 +3,9 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                sh 'echo 'running project 2''
+                script {
+                    echo 'project2 being run'
+                }
             }
         }
     }
